@@ -1,0 +1,48 @@
+{
+	"name": "testcafe-snippets",
+	"displayName": "TestCafe Snippets",
+	"description": "Code snippets for TestCafe",
+	"version": "1.64.0",
+	"publisher": "hdorgeval",
+	"icon": "images/icon.png",
+	"engines": {
+		"vscode": "^1.18.0"
+	},
+	"preview": true,
+	"categories": [
+		"Snippets"
+	],
+	"keywords": [
+		"testcafe",
+		"snippets",
+		"e2e"
+	],
+	"contributes": {
+		"snippets": [
+			{
+				"language": "typescript",
+				"path": "./snippets/ts-snippets.json"
+			},
+			{
+				"language": "javascript",
+				"path": "./snippets/js-snippets.json"
+			}
+		]
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/hdorgeval/testcafe-snippets.git"
+	},
+	"author": "Henri d'Orgeval",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/hdorgeval/testcafe-snippets/issues"
+	},
+	"homepage": "https://github.com/hdorgeval/testcafe-snippets#readme",
+	"__metadata": {
+		"id": "87d5d7c0-900f-447c-897c-190d68b15f3c",
+		"publisherId": "7bd96de3-bcdc-4330-99c3-002a548d1c5d",
+		"publisherDisplayName": "hdorgeval",
+		"installedTimestamp": 1634752948077
+	}
+}

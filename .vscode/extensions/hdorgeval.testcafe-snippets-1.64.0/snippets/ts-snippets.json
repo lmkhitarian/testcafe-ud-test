@@ -1,0 +1,754 @@
+{
+    "tc-type-text": {
+      "prefix": "tc-type-text-then-press-tab",
+      "body": [
+        "await t // type a text in an input box and press tab",
+        "\t.setTestSpeed(${1:0.7})",
+        "\t.hover(${2:input})",
+        "\t.expect(${2:input}.hasAttribute(\"disabled\")).notOk({timeout: ${4:5000}\\})",
+        "\t.click(${2:input})",
+        "\t.typeText(${2:input}, \"${3:john doe}\", {replace: true\\})",
+        "\t.pressKey(\"tab\");"
+      ],
+      "description": "type a text in an input box and press tab"
+    },
+    "tc-copy-paste-text": {
+        "prefix": "tc-copy-paste-text-then-press-tab",
+        "body": [
+          "await t // copy paste a text in an input box and press tab",
+          "\t.setTestSpeed(${1:0.7})",
+          "\t.hover(${2:input})",
+          "\t.expect(${2:input}.hasAttribute(\"disabled\")).notOk({timeout: ${4:5000}\\})",
+          "\t.click(${2:input})",
+          "\t.typeText(${2:input}, \"${3:john doe}\", {replace: true, paste: true\\})",
+          "\t.pressKey(\"tab\");"
+        ],
+        "description": "Copy paste a text in an input box and press tab"
+      },
+      "tc-select-an-option-by-content": {
+        "prefix": "tc-select-an-option-by-content",
+        "body": [
+          "await t // select an option by its content and press tab",
+          "\t.setTestSpeed(${1:0.7})",
+          "\t.hover(${2:select})",
+          "\t.expect(${2:select}.hasAttribute(\"disabled\")).notOk({timeout: ${4:5000}\\})",
+          "\t.click(${2:select})",
+          "\t.click(${2:select}",
+          "\t\t.find(\"option\")",
+          "\t\t.withText(\"${3:content}\")",
+          "\t\t.nth(0))",
+          "\t.pressKey(\"tab\");"
+        ],
+        "description": "Select an option by content"
+      },
+      "tc-select-an-option-by-content-with-regex": {
+        "prefix": "tc-select-an-option-by-content-with-regex",
+        "body": [
+          "await t // select an option by content with a Regex and press tab",
+          "\t.setTestSpeed(${1:0.7})",
+          "\t.hover(${2:select})",
+          "\t.expect(${2:select}.hasAttribute(\"disabled\")).notOk({timeout: ${4:5000}\\})",
+          "\t.click(${2:select})",
+          "\t.click(${2:select}",
+          "\t\t.find(\"option\")",
+          "\t\t.withText(new RegExp(`^${3:content}$`))",
+          "\t\t.nth(0))",
+          "\t.pressKey(\"tab\");"
+        ],
+        "description": "Select an option by content with a Regular Expression"
+      },
+      "tc-select-an-option-by-exact-content": {
+        "prefix": "tc-select-an-option-by-exact-content",
+        "body": [
+          "await t // select an option by its exact content and press tab",
+          "\t.setTestSpeed(${1:0.7})",
+          "\t.hover(${2:select})",
+          "\t.expect(${2:select}.hasAttribute(\"disabled\")).notOk({timeout: ${4:5000}\\})",
+          "\t.click(${2:select})",
+          "\t.click(${2:select}",
+          "\t\t.find(\"option\")",
+          "\t\t.withExactText(\"${3:content}\")",
+          "\t\t.nth(0))",
+          "\t.pressKey(\"tab\");"
+        ],
+        "description": "Select an option by exact content"
+      },
+      "tc-select-first-option": {
+        "prefix": "tc-select-first-option",
+        "body": [
+          "await t // select the first option and press tab",
+          "\t.setTestSpeed(${1:0.7})",
+          "\t.hover(${2:select})",
+          "\t.expect(${2:select}.hasAttribute(\"disabled\")).notOk({timeout: ${3:5000}\\})",
+          "\t.click(${2:select})",
+          "\t.click(${2:select}",
+          "\t\t.find(\"option\")",
+          "\t\t.nth(0))",
+          "\t.pressKey(\"tab\");"
+        ],
+        "description": "Select first option"
+      },
+      "tc-select-last-option": {
+        "prefix": "tc-select-last-option",
+        "body": [
+          "await t // select the last option and press tab",
+          "\t.setTestSpeed(${1:0.7})",
+          "\t.hover(${2:select})",
+          "\t.expect(${2:select}.hasAttribute(\"disabled\")).notOk({timeout: ${3:5000}\\})",
+          "\t.click(${2:select})",
+          "\t.click(${2:select}",
+          "\t\t.find(\"option\")",
+          "\t\t.nth(-1))",
+          "\t.pressKey(\"tab\");"
+        ],
+        "description": "Select last option"
+      },
+      "tc-navigate-to-url": {
+        "prefix": "tc-navigate-to-url",
+        "body": [
+          "await t // navigate to url",
+          "\t.navigateTo(\"${1:url}\");"
+        ],
+        "description": "Navigate to url"
+      },
+      "tc-select-a-radio-button-by-value": {
+        "prefix": "tc-select-a-radio-button-by-value",
+        "body": [
+          "// select a radio button by it's input value",
+          "const radioButtonValue = \"${1:value}\"; // the value to search", 
+          "const radioButton = Selector('input[type=\"radio\"]')",
+          "\t.withAttribute(\"name\", \"${2:groupName}\") // select all radio buttons within the group ${2:groupName}",
+          "\t\t.filter((node) => {",
+          "\t\t\tconst button = node as HTMLInputElement;",
+          "\t\t\tif (button && button.value === radioButtonValue) {",
+          "\t\t\t\treturn true;",
+          "\t\t\t\\}",
+          "\t\t\treturn false;",
+          "\t\t}, {radioButtonValue\\})",
+          "\t\t.nth(0);",
+          "await t",
+          "\t.hover(radioButton)",
+          "\t.expect(radioButton.hasAttribute(\"disabled\")).notOk({timeout: ${3:5000}\\})",
+          "\t.click(radioButton)",
+          "\t.pressKey(\"tab\");"
+        ],
+        "description": "Select a radio button by it's input value"
+      },
+      "tc-set-window-size-to-custom-width-and-height": {
+        "prefix": "tc-set-window-size-to-custom-width-and-height",
+        "body": [
+          "await t // set the window size",
+          "\t.resizeWindow(${1:1024}, ${2:600});"
+        ],
+        "description": "Set Window size to custom width ad height"
+      },
+      "tc-maximize-window": {
+        "prefix": "tc-maximize-window",
+        "body": [
+          "await t // set the window size to it's max size",
+          "\t.maximizeWindow();"
+        ],
+        "description": "Maximize Window"
+      },
+      "tc-set-window-size-to-fit-device": {
+        "prefix": "tc-set-window-size-to-fit-device",
+        "body": [
+          "await t // set the window size to fit specific device (see: http://viewportsizes.com/)",
+          "\t.resizeWindowToFitDevice(\"${1|Galaxy Nexus,HTC One,HTC Windows Phone 8S,Huawei Ascend G510,Huawei Ascend Mate,Huawei Y300-0151,iPad,iPhone 5,iPhone 6,iPhone 6 Plus,LG G2,Microsoft Surface,Microsoft Surface Pro,Nexus 5,Nexus 7,Nokia Lumia 520,Nokia Lumia 1520,Samsung Galaxy S4 I9500,Sony VAIO Tap 20|}\", {portraitOrientation: ${2|true,false|}\\});"
+        ],
+        "description": "Set Window size to fit specific device"
+      },
+      "tc-reload-browser": {
+        "prefix": "tc-reload-browser",
+        "body": [
+          "// you need to import {ClientFunction} from \"testcafe\";",
+          "const reloadBrowser = ClientFunction(() => window.location.reload(true));",
+          "await reloadBrowser();"
+        ],
+        "description": "Reload Browser"
+      },
+      "tc-import": {
+        "prefix": "tc-import",
+        "body": [
+          "import \"testcafe\";",
+          "import {ClientFunction, Selector\\} from \"testcafe\";"
+        ],
+        "description": "TestCafe Import Statements"
+      },
+      "tc-fixture-with-start-page": {
+        "prefix": "tc-fixture-with-start-page",
+        "body": [
+          "fixture(\"${1:My Fixture}\")",
+          "\t.page(\"${2|http://myurl,http://devexpress.github.io/testcafe/example|}\");"
+        ],
+        "description": "TestCafe Fixture with a Start Page"
+      },
+      "tc-test": {
+        "prefix": "tc-test",
+        "body": [
+          "test(\"${1:My Test}\", async (t) => {",
+          "\t$0",  
+          "\\});",
+          ""
+        ],
+        "description": "TestCafe Test"
+      },
+      "tc-pause-test-for-client-side-debugging": {
+        "prefix": "tc-pause-test-for-client-side-debugging",
+        "body": [
+          "await t.debug();",
+          ""
+        ],
+        "description": "Pause test for Client-Side Debugging"
+      },
+      "tc-fixture-with-start-page-and-hooks": {
+        "prefix": "tc-fixture-with-start-page-and-hooks",
+        "body": [
+          "fixture(\"${1:My Fixture}\")",
+          "\t.page(\"${2|http://myurl,http://devexpress.github.io/testcafe/example|}\")",
+          "\t.before(async (ctx) => {",
+          "\t\t// inject in the fixture context any object you want to share beetween tests",
+          "\t\tctx.${3:config} = ${3:config};",
+          "\t\\})",
+          "\t.beforeEach(async (t) => {",
+          "\t\t// inject in the test context any input data needed to run the test",
+          "\t\tt.ctx.${4:inputData} = ${4:inputData};",
+          "\t\t// put here all actions that are common to all tests",
+          "\t\t$0",
+          "\t\\});",
+          ""
+        ],
+        "description": "TestCafe Fixture with a Start Page and Hooks"
+      },
+      "tc-test-with-hooks": {
+        "prefix": "tc-test-with-hooks",
+        "body": [
+          "test(\"${1:My Test}\", async (t) => {",
+          "\t$0",  
+          "\t\\})",
+          "\t.before(async (t) => {",
+          "\t\t// inject in the test context any input data needed to run this specific test",
+          "\t\tt.ctx.${2:inputData} = ${2:inputData};",
+          "\t\\})",
+          "\t.after(async (t) => {",
+          "\t\t// test finalization code",
+          "\t\\});",
+          ""
+        ],
+        "description": "TestCafe Test with hooks"
+      },
+      "tc-get-selected-option": {
+        "prefix": "tc-get-selected-option",
+        "body": [
+          "// get the selected option",
+          "const select = Selector(\"select#${1|my-id,preferred-interface|}\");",
+          "const selectedOption = select",
+          "\t\t.find(\"option\")",
+          "\t\t\t.filter((node) => {",
+          "\t\t\t\tconst option = node as HTMLOptionElement;",
+          "\t\t\t\tif (option && option.selected) {",
+          "\t\t\t\t\treturn true;",
+          "\t\t\t\t\\}",
+          "\t\t\t\treturn false;",
+          "\t\t\t\\})",
+          "\t\t\t.nth(0);",
+          "const selectedOptionContent = await selectedOption.textContent;",
+          ""
+        ],
+        "description": "Get the selected option of a select element"
+      },
+      "tc-iterate-over-selected-checkboxes": {
+        "prefix": "tc-iterate-over-selected-checkboxes",
+        "body": [
+          "// iterate over selected checkboxes",
+          "const selectedCheckboxes = Selector('input[type=\"checkbox\"]')",
+          "\t// select all checboxes whose name value is in a set of predefined values",
+          "\t.withAttribute(\"name\", /${1:custom-name}|remote|re-using|background|CI|analysis/)",
+          "\t\t.filter((node) => {",
+          "\t\t\tconst checkbox = node as HTMLInputElement;",
+          "\t\t\tif (checkbox && checkbox.checked) {",
+          "\t\t\t\treturn true;",
+          "\t\t\t\\}",
+          "\t\t\treturn false;",
+          "\t\t\\});",
+          "const checkedCount = await selectedCheckboxes.count;",
+          "const checkedIds = [];",
+          "for (let i = 0; i < checkedCount; i++) {",
+          "\tcheckedIds.push(await selectedCheckboxes.nth(i).id);",
+          "\\}",
+          "// now you can make your business check from the checkedIds array",
+          "$0"
+        ],
+        "description": "Iterate over selected Checkboxes"
+      },
+      "tc-selector-with-options": {
+        "prefix": "tc-selector-with-options",
+        "body": [
+          "const ${1:mySelector} = Selector('${2:input#developer-name[type=\"text\"]'})",
+          "\t.with({timeout: ${3:5000}, visibilityCheck: true})",
+          "\t.nth(0);",
+          ""
+        ],
+        "description": "Create a Selector with explicit visibility check and timeout"
+      },
+      "tc-remove-text": {
+        "prefix": "tc-remove-text-then-press-tab",
+        "body": [
+          "await t // remove the text present in an input box and press tab",
+          "\t.setTestSpeed(${1:0.7})",
+          "\t.hover(${2:input})",
+          "\t.expect(${2:input}.hasAttribute(\"disabled\")).notOk({timeout: ${3:5000}\\})",
+          "\t.click(${2:input})",
+          "\t.pressKey(\"ctrl+a delete\")",
+          "\t.pressKey(\"tab\");"
+        ],
+        "description": "remove the text present in an input box and press tab"
+      },
+      "tc-wait-for-a-selector-to-disappear": {
+        "prefix": "tc-wait-for-a-selector-to-disappear",
+        "body": [
+          "// wait for a selector to disappear",
+          "const ${1:spinner} = Selector(\"${2:div.loading}\");",
+          "await t",
+          "\t.expect(${1:spinner}.with({visibilityCheck: true}).exists).notOk({timeout: ${3:5000}\\});"
+        ],
+        "description": "Wait for a selector to disappear"
+      },
+      "tc-wait-for-a-selector-to-appear": {
+        "prefix": "tc-wait-for-a-selector-to-appear",
+        "body": [
+          "// wait for a selector to appear",
+          "const ${1:selector} = Selector(\"${2:div.popup}\")",
+          "\t.with({visibilityCheck: true})",
+          "\t.nth(0);",
+          "await t",
+          "\t.expect(${1:selector}.exists).ok({timeout: ${3:5000}\\});"
+        ],
+        "description": "Wait for a selector to appear"
+      },
+      "tc-client-function-ajax-request-with-jquery": {
+        "prefix": "tc-client-function-ajax-request-with-jquery",
+        "body": [
+          "// Client-side ajax request",
+          "// client-side function used for sending the ajax request",
+          "const send = ClientFunction( (req: any) => {",
+          "\treturn new Promise( (resolve) => {",
+          "\t\tconst json: string = JSON.stringify(req);",
+          "\t\tconst $ = (window as any).jQuery;",
+          "\t\t$.ajax({",
+          "\t\t\tcontentType: \"application/json; charset=utf-8\",",
+          "\t\t\tdata: json,",
+          "\t\t\tdataType: \"json\",",
+          "\t\t\ttype: \"POST\",",
+          "\t\t\turl: \"https://reqres.in/api/users\"",
+          "\t\t\\})",
+          "\t\t.always( (httpResponse: XMLHttpRequest) => {",
+          "\t\t\tif (httpResponse && httpResponse.getAllResponseHeaders === undefined) {",
+          "\t\t\t\tresolve(httpResponse);",
+          "\t\t\t\treturn;",
+          "\t\t\t\\}",
+          "\t\t\tresolve({",
+          "\t\t\t\tresponseHeaders: httpResponse.getAllResponseHeaders(),",
+          "\t\t\t\tresponseText: httpResponse.responseText,",
+          "\t\t\t\tstatus: httpResponse.status,",
+          "\t\t\t\tstatusText: httpResponse.statusText,",
+          "\t\t\t});",
+          "\t\t});",
+          "\t});",
+          "\\});",
+          "// request object that will be posted to the backend server",
+          "const request = {",
+          "\tfirstName: \"john\",",
+          "\tlastName: \"Doe\",",
+          "\trequestTime: Date(),",
+          "\\};",
+          "// send request and get response",
+          "const response: XMLHttpRequest | any = await send(request);"
+        ],
+        "description": "Client-side ajax request"
+      },
+      "tc-angularjs-enable-debug": {
+        "prefix": "tc-angularjs-enable-debug",
+        "body": [
+          "// enable Angular debug info",
+          "const reloadWithDebugInfo = ClientFunction(() => {",
+          "\tconst angular = (window as any).angular;",
+          "\tif (angular) {",
+          "\t\tangular.reloadWithDebugInfo();",
+          "\t}",
+          "});",
+          "await reloadWithDebugInfo();"
+        ],
+        "description": "Enable Angular Debug Info"
+      },
+      "tc-angularjs-get-object-from-scope": {
+        "prefix": "tc-angularjs-get-object-from-scope",
+        "body": [
+          "// get object from angularjs scope",
+          "const getCustomObject = ClientFunction( () => {",
+          "\tconst $ = (window as any).jQuery;",
+          "\tconst scope = $(\"${1:selector}\").scope();",
+          "\t// inspect, in dev tools, the scope object to discover available objects",
+          "\t// tslint:disable-next-line:no-console",
+          "\tconsole.log(\"scope: \", scope);",
+          "\treturn scope.xxx;",
+          "\\});",
+          "const myObject = await getCustomObject();"
+        ],
+        "description": "Get object from angularjs scope"
+      },
+      "tc-client-function-set-something-in-dom": {
+        "prefix": "tc-client-function-set-something-in-dom",
+        "body": [
+          "// you need to import {ClientFunction} from \"testcafe\";",
+          "// this sample will replace a checkbox label",
+          "// see http://devexpress.github.io/testcafe/example/",
+          "// <label for=\"windows\">",
+          "//     <input type=\"radio\" name=\"os\" id=\"windows\" value=\"Windows\">",
+          "//     Windows",
+          "// </label>",
+          "const mySelector = Selector('label[for=\"windows\"]');",
+          "const setLabel = ClientFunction((selector: Selector, value: string) => {",
+            "\tconst element: any = selector();",
+            "\t// check, in developper tools, what are the available properties in element",
+            "\t// tslint:disable-next-line:no-console",
+            "\tconsole.log(\"element:\", element);",
+            "\telement.firstElementChild.nextSibling.replaceWith(value);",
+          "});",
+          "await setLabel(mySelector, \"Windows 10\");"
+        ],
+        "description": "set a DOM property with a Client Function"
+      },
+      "tc-client-function-get-something-from-dom": {
+        "prefix": "tc-client-function-get-something-from-dom",
+        "body": [
+          "// you need to import {ClientFunction} from \"testcafe\";",
+          "// this sample will get the details of a selected input",
+          "// see http://devexpress.github.io/testcafe/example/",
+          "// <label for=\"windows\">",
+          "//     <input type=\"radio\" name=\"os\" id=\"windows\" value=\"Windows\">",
+          "//     Windows",
+          "// </label>",
+          "const inputSelector = Selector('label[for=\"windows\"] input');",
+          "const getInputDetails = ClientFunction((selector: Selector) => {",
+              "\treturn new Promise( (resolve) => {",
+                  "\t\tconst element: any = selector();",
+                  "\t\t// check, in developper tools, what are the available properties in element",
+                  "\t\t// tslint:disable-next-line:no-console",
+                  "\t\tconsole.log(\"element:\", element);",
+                  "\t\tresolve({",
+                      "\t\t\tchecked: element.checked,",
+                      "\t\t\tdisabled: element.disabled,",
+                      "\t\t\tid: element.id,",
+                      "\t\t\tname: element.name,",
+                      "\t\t\ttype: element.type,",
+                      "\t\t\tvalue: element.value,",
+                  "\t\t});",
+              "\t});",
+          "});",
+          "const inputDetails = await getInputDetails(inputSelector);"
+        ],
+        "description": "get an object from the DOM with a Client Function"
+      },
+      "tc-filter-hidden-elements": {
+        "prefix": "tc-filter-hidden-elements",
+        "body": [
+          "// get all hidden inputs",
+          "// see http://devexpress.github.io/testcafe/example/",
+          "const inputs = Selector(\"input\");",
+          "const hiddenInputs =  inputs.filterHidden(); // v0.19.0",
+          "await t.expect(hiddenInputs.count).eql(1);",
+          "// tslint:disable-next-line:no-console",
+          "console.log(`first hiddenInput is '${await hiddenInputs.nth(0).id}'`);"
+        ],
+        "description": "Filter hidden elements (v0.19.0 and above)"
+      },
+      "tc-filter-visible-elements": {
+        "prefix": "tc-filter-visible-elements",
+        "body": [
+          "// get all visible inputs",
+          "// see http://devexpress.github.io/testcafe/example/",
+          "const inputs = Selector(\"input\");",
+          "const visibleInputs = inputs.filterVisible(); // v0.19.0",
+          "await t.expect(visibleInputs.count).eql(11);",
+          "// tslint:disable-next-line:no-console",
+          "console.log(`first visibleInputs is '${await visibleInputs.nth(0).id}'`);"
+        ],
+        "description": "Filter visible elements (v0.19.0 and above)"
+      },
+      "tc-client-function-scroll-to-element": {
+        "prefix": "tc-client-function-scroll-to-element",
+        "body": [
+          "// you need to import {ClientFunction} from \"testcafe\";",
+          "// this sample will scroll to a label",
+          "// see http://devexpress.github.io/testcafe/example/",
+          "// <label for=\"windows\">",
+          "//     <input type=\"radio\" name=\"os\" id=\"windows\" value=\"Windows\">",
+          "//     Windows",
+          "// </label>",
+          "const inputSelector = Selector('label[for=\"windows\"]');",
+          "const scrollToElement = ClientFunction((selector: Selector, offset: {x: number, y: number}) => {",
+              "\treturn new Promise( (resolve) => {",
+                  "\t\tconst element: any = selector();",
+                  "\t\tif (element && element.scrollIntoView) {",
+                      "\t\t\telement.scrollIntoView();",
+                  "\t\t}",
+                  "\t\t// do a small shift up and left",
+                  "\t\tif (window && window.scrollBy && offset) {",
+                      "\t\t\twindow.scrollBy(offset.x, offset.y);",
+                  "\t\t}",
+                  "\t\tresolve();",
+              "\t});",
+          "});",
+          "await scrollToElement(inputSelector, {x: 20, y: -20});"
+        ],
+        "description": "Scroll to an element in the DOM"
+      },
+      "tc-client-function-read-localstorage": {
+        "prefix": "tc-client-function-read-localstorage",
+        "body": [
+            "// you need to import {ClientFunction} from \"testcafe\";",
+            "const getLocalStorageValueByKey = ClientFunction((key: string) => {",
+              "\treturn new Promise( (resolve) => {",
+                  "\t\tconst result = localStorage.getItem(key);",
+                  "\t\tresolve(result);",
+              "\t});",
+          "});",
+          "const value = await getLocalStorageValueByKey(\"mykey\");"
+        ],
+        "description": "Read a value stored in localStorage"
+      },
+      "tc-client-function-write-to-localstorage": {
+        "prefix": "tc-client-function-write-to-localstorage",
+        "body": [
+            "// you need to import {ClientFunction} from \"testcafe\";",
+            "const setLocalStorage = ClientFunction((key: string, value: string) => {",
+              "\treturn new Promise( (resolve, reject) => {",
+                  "\t\ttry {",
+                      "\t\t\tlocalStorage.setItem(key, value);",
+                      "\t\t\tresolve();",
+                  "\t\t} catch (error) {",
+                      "\t\t\treject(error);",
+                  "\t\t}",
+              "\t});",
+            "});",
+            "await setLocalStorage(\"mykey\", \"myValue\");"
+        ],
+        "description": "Write a value to the localStorage"
+      },
+      "tc-take-screenshot-of-an-element-in-dom": {
+        "prefix": "tc-take-screenshot-of-an-element-in-dom",
+        "body": [
+            "// take a screenshot of an element",
+            "// see http://devexpress.github.io/testcafe/example/",
+            "// you need to set the command-line option --screenshots <dir>",
+            "const input = Selector('input#developer-name[type=\"text\"]');",
+            "await t",
+                "\t.hover(input)",
+                "\t.expect(input.hasAttribute(\"disabled\")).notOk({timeout: 5000})",
+                "\t.click(input)",
+                "\t.typeText(input, \"john doe\", {replace: true})",
+                "\t.takeElementScreenshot(input,",
+                    "\t\t// store the screenshot in the --screenshots dir",
+                    "\t\t\"screenshot1.png\", {",
+                    "\t\tincludeMargins: true,",
+                    "\t\tincludePaddings: true,",
+                "\t});"
+        ],
+        "description": "Take a Screenshot of a DOM element"
+      },
+      "tc-use-role-to-authenticate-once": {
+        "prefix": "tc-use-role-to-authenticate-once",
+        "body": [
+            "// take a screenshot of an element",
+            "// see http://devexpress.github.io/testcafe/example/",
+            "// you need to set the command-line option --screenshots <dir>",
+            "const input = Selector('input#developer-name[type=\"text\"]');",
+            "await t",
+                "\t.hover(input)",
+                "\t.expect(input.hasAttribute(\"disabled\")).notOk({timeout: 5000})",
+                "\t.click(input)",
+                "\t.typeText(input, \"john doe\", {replace: true})",
+                "\t.takeElementScreenshot(input,",
+                    "\t\t// store the screenshot in the --screenshots dir",
+                    "\t\t\"screenshot1.png\", {",
+                    "\t\tincludeMargins: true,",
+                    "\t\tincludePaddings: true,",
+                "\t});"
+        ],
+        "description": "Use Role to authenticate only once in the running session."
+      },
+      "tc-client-function-get-browser-user-agent": {
+        "prefix": "tc-client-function-get-browser-user-agent",
+        "body": [
+          "// you need to import {ClientFunction} from \"testcafe\";",
+          "const getBrowserUserAgent = ClientFunction(() => navigator.userAgent.toString());",
+          "const userAgent = await getBrowserUserAgent();"
+        ],
+        "description": "Get Browser User Agent"
+      },
+      "tc-client-function-get-window-state": {
+        "prefix": "tc-client-function-get-window-state",
+        "body": [
+          "// you need to import {ClientFunction} from \"testcafe\";",
+          "const getWindowState = ClientFunction(() => ({",
+            "\theight:      window.innerHeight,",
+            "\tisMaximized: window.outerWidth >= window.screen.availWidth && window.outerHeight >= window.screen.availHeight,",
+            "\twidth:       window.innerWidth,",
+          "}));",
+          "const windowState = await getWindowState();"
+        ],
+        "description": "Get Window State"
+      },
+      "tc-client-function-measure-execution-time": {
+        "prefix": "tc-client-function-measure-execution-time",
+        "body": [
+          "// you need to import {ClientFunction} from \"testcafe\";",
+          "const stopWatch = {",
+            "\telapsedTimeInMilliseconds: ClientFunction(() => Date.now() - (window as any).startTime),",
+            "\tstart: ClientFunction(() => (window as any).startTime = Date.now()),",
+          "};",
+          "await stopWatch.start();",
+          "// place here the code to instrument,",
+          "const elapsed = await stopWatch.elapsedTimeInMilliseconds();",
+          "await t.expect(elapsed).lt(1000);"
+        ],
+        "description": "Measure execution time"
+      },
+      "tc-select-first-non-empty-option": {
+        "prefix": "tc-select-first-non-empty-option",
+        "body": [
+          "// select first non-empty option",
+          "const selector = Selector(\"select\").nth(0);",
+          "const firstNonEmptyOption = selector",
+              "\t.find(\"option\")",
+                  "\t\t.filter((node) => {",
+                      "\t\t\tconst option = node as HTMLOptionElement;",
+                      "\t\t\tif (option && option.innerText && option.innerText.trim() !== \"\") {",
+                          "\t\t\t\treturn true;",
+                      "\t\t\t}",
+                      "\t\t\treturn false;",
+                  "\t\t})",
+                  "\t\t.nth(0);",
+          "await t",
+              "\t.hover(selector)",
+              "\t.click(selector)",
+              "\t.click(firstNonEmptyOption);"
+        ],
+        "description": "Select first non-empty option"
+      },
+      "tc-assert-count": {
+        "prefix": "tc-assert-count",
+        "body": [
+          "// assert for a count value",
+          "// see http://devexpress.github.io/testcafe/example/",
+          "const ${1:selector} = Selector(\"${2:select#preferred-interface option}\")",
+          "\t.with({visibilityCheck: true});",
+          "await t",
+          "\t.expect(${1:selector}.count).eql(${3:3}, {timeout: ${4:5000}\\});"
+        ],
+        "description": "Assert for Selector.count value"
+      },
+      "tc-assert-exists": {
+        "prefix": "tc-assert-exists",
+        "body": [
+          "// assert the existence of a selector",
+          "// see http://devexpress.github.io/testcafe/example/",
+          "const preferredInterfaceElement = \"select#preferred-interface\";",
+          "const selector = Selector(preferredInterfaceElement)",
+              "\t.find(\"option\")",
+              "\t.withExactText(\"JavaScript API\");",
+          "await t",
+              "\t.expect(selector.exists)",
+                  "\t\t.ok(",
+                      "\t\t\t`The element '${preferredInterfaceElement\\}' has no option named 'JavaScript API'`,",
+                      "\t\t\t{timeout: 5000},",
+                  "\t\t);"
+        ],
+        "description": "Assert the existence of a selector"
+      },
+      "tc-wait-until-exists-property-of-selector-is-stable": {
+        "prefix": "tc-wait-until-exists-property-of-selector-is-stable",
+        "body": [
+          "// wait until the 'exists' property of a selector is stable",
+          "// see http://devexpress.github.io/testcafe/example/",
+          "const mySelector = Selector('select#preferred-interface');",
+          "// see https://github.com/hdorgeval/testcafe-snippets for the wait() method definition",
+          "await wait(2000).until(mySelector).exists.isStable();",
+          "// now it is safe to evaluate the exists property",
+          "const exists = await mySelector.exists;"
+        ],
+        "description": "Assert the existence of a selector without throwing an exception"
+      },
+      "tc-ensure-field-is-ready-before-clicking-on-it": {
+        "prefix": "tc-ensure-field-is-ready-before-clicking-on-it",
+        "body": [
+          "// Ensure field is ready before clicking on it",
+          "// see http://devexpress.github.io/testcafe/example/",
+          "const field = Selector('input#developer-name[type=\"text\"]');",
+          "await t",
+          "\t.expect(field.with({visibilityCheck: true}).exists)",
+          "\t.ok({timeout: ${1:5000}\\})",
+          "\t.hover(field)",
+          "\t.expect(field.hasAttribute('disabled'))",
+          "\t.notOk({timeout: ${1:5000}\\});"
+        ],
+        "description": "Ensure field is ready before clicking on it"
+      },
+      "tc-type-text-letter-by-letter": {
+        "prefix": "tc-type-text-letter-by-letter",
+        "body": [
+          "// Type text letter by letter like a real user",
+          "// usefull when you want to test the behavior of autocomplete fields",
+          "// see http://devexpress.github.io/testcafe/example/",
+          "const selector = Selector('input#developer-name[type=\"text\"]');",
+          "const letters = [...'john doe'];",
+          "let index = -1;",
+          "for (const letter of letters) {",
+              "\tindex += 1;",
+              "\tif (index === 0) {",
+                  "\t\tawait t.typeText(selector,letter, {replace: true});",
+                  "\t\tcontinue;",
+              "\t}",
+              "\tawait t",
+                  "\t\t.wait(100)",
+                  "\t\t.typeText(selector,letter);",
+          "}"
+        ],
+        "description": "Type text letter by letter like a real user"
+      },
+      "tc-client-function-get-style-attribute": {
+        "prefix": "tc-client-function-get-style-attribute",
+        "body": [
+          "// you need to import {ClientFunction} from 'testcafe';",
+          "// get style attribute of a Selector",
+          "// see http://devexpress.github.io/testcafe/example/",
+          "const getStyleAttributeOf = ClientFunction((selector: Selector) => {",
+            "\tconst element = selector();",
+            "\treturn element.getAttribute('style');",
+          "});",
+          "",
+          "const field = Selector('div#slider > span');",
+          "const styles = await getStyleAttributeOf(field) || '';",
+          "console.log(`styles = '\\${styles}'`);"
+        ],
+        "description": "Get content of style attribute"
+      },
+      "tc-client-function-set-style-attribute": {
+        "prefix": "tc-client-function-set-style-attribute",
+        "body": [
+          "// you need to import {ClientFunction} from 'testcafe';",
+          "// get style attribute of a Selector",
+          "// see http://devexpress.github.io/testcafe/example/",
+          "const setStyleAttributeOf = ClientFunction((selector: Selector, styleValue: string) => {",
+            "\tconst element: any = selector();",
+            "\telement.setAttribute('style', styleValue);",
+          "});",
+          "",
+          "const field = Selector('div#slider > span');",
+          "const newStyles = 'left: 50%;';",
+          "await setStyleAttributeOf(field, newStyles);"
+        ],
+        "description": "Set content of style attribute"
+      }
+}
